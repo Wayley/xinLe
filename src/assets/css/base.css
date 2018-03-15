@@ -1,3 +1,6 @@
+/* page{
+  font-size: 10px;
+} */
 .clearfix{
   overflow: hidden;
   _zoom:1;
@@ -8,3 +11,21 @@
 .fr{
   float: right;
 }
+.tag{
+  margin-right: 5px;
+  padding: 2px 5px;
+}
+.tagblue{
+  color:rgb(89,171,253);background-color:rgba(89,171,253,0.15);
+}
+.tagyellow{
+  color:rgb(242,161,47);background-color:rgba(242,161,47,0.15);
+}
+.taggreen{
+  color:rgb(51,190,133);background-color:rgba(51,190,133,0.15);
+}
+.tagbabyblue{
+  color:rgb(123,189,255);background-color:rgba(123,189,255,0.15);
+}
+
+/* 房源列表 */
