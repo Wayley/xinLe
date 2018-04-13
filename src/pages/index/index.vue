@@ -68,6 +68,7 @@
 
 <script>
 import card from '@/components/card'
+
 import '../../assets/css/base.css'
 export default {
   data() {
@@ -222,8 +223,8 @@ export default {
   background: #fff;
   position: absolute;
   top: 10px;
-  left: 20px;
-  right: 20px;
+  left: 10px;
+  right: 10px;
   display: flex;
   padding: 10px;
 }
