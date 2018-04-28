@@ -1,12 +1,14 @@
 <template>
   <div class="group">
-    <Checkbox v-for="(item,index) in list" :key="index" :checked="checkItem(item.value)" :val="item.name"></Checkbox>
+    {{datas}}
+    <Checkbox v-for="(item,index) in list" :key="item.value" :checked="checkItem(item.value)" :name="item.name" :label="item.value"></Checkbox>
   </div>
 </template>
 
 <script>
-import Checkbox from '@/components/checkbox'
+import Checkbox from '@/components/checkbox';
 export default {
+  name: 'CheckboxGroup',
   components: {
     Checkbox
   },
@@ -14,50 +16,38 @@ export default {
     list: {
       type: Array,
       default() {
-        return []
+        return [];
       }
     },
     value: {
       type: Array,
       default() {
-        return []
+        return [];
       }
     }
   },
+  data() {
+    return {
+      modelList: this.value,
+      datas: true
+    };
+  },
   methods: {
     checkItem(key) {
+      // console.log(this.value, 'groupModel');
       var index = _.findIndex(this.value, o => {
-        return o == key
-      })
-      return this.value.indexOf(key) > -1
+        return o == key;
+      });
+      return this.value.indexOf(key) > -1;
+    },
+    chnage(data) {
+      console.log(9099990, data);
+      // this.modelList = data;
     }
   }
-}
+};
 </script>
 
-<style>
-.group {
-}
-ul {
-  width: 100%;
-}
-ul li {
-  display: inline-block;
-  color: #999;
-  width: 25%;
-  font-size: 12px;
-  padding: 5px;
-  text-align: center;
-  box-sizing: border-box;
-}
-ul li span {
-  display: block;
-  background: #f5f5f5;
-  line-height: 24px;
-  border-radius: 3px;
-}
-ul li.active span {
-  color: aqua;
-  background: aquamarine;
-}
+<style scope>
+
 </style>

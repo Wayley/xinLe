@@ -32,23 +32,24 @@
     </div> -->
     <!-- 售价选择 -->
     <div class="price" v-show="listDisplay['price']">
-      <p>价格区间(万)</p>
+      <p class="title">价格区间(万)</p>
       <div class="price-search">
         <input type="text" placeholder="最小">
-        <div>—</div><input type="text" placeholder="最大">
+        <div style="margin:0 10px">-</div><input type="text" placeholder="最大">
       </div>
       <ul class="dot">
         <li v-for="(item,index) in priceList" @click="priceChexk(index)" :key="index">
           <span>{{item.name}}</span>
         </li>
       </ul>
+      {{group}}
       <CheckboxGroup v-model="group" :list="list"></CheckboxGroup>
       <!-- <Checkbox :checked="mychecked" :val="myval"></Checkbox> -->
     </div>
   </div>
 </template>
 <script>
-import CheckboxGroup from '@/components/checkbox-group'
+import CheckboxGroup from '@/components/checkbox-group';
 
 export default {
   components: {
@@ -56,13 +57,15 @@ export default {
   },
   data() {
     return {
-      group: [1, 2, 3],
+      group: [1, 2, 3, 7],
       list: [
-        { name: '100', value: 1 },
-        { name: '200', value: 2 },
-        { name: '300', value: 3 },
-        { name: '400', value: 4 },
-        { name: '500', value: 5 }
+        { value: 1, name: '100万以下' },
+        { value: 2, name: '100-200万' },
+        { value: 3, name: '200-300万' },
+        { value: 4, name: '300-400万' },
+        { value: 5, name: '400-700万' },
+        { value: 6, name: '700-1000万' },
+        { value: 7, name: '1000万以上' }
       ],
       showMask: false,
       queryList: [
@@ -214,34 +217,34 @@ export default {
         { key: 7, name: '1000万以上' }
       ],
       priceCheckedList: []
-    }
+    };
   },
   created() {
-    this.listSecond = this.areaList
+    this.listSecond = this.areaList;
   },
   methods: {
     showList(type) {
       if (this.lastName) {
-        this.listDisplay[this.lastName] = false
+        this.listDisplay[this.lastName] = false;
       }
-      this.listDisplay[type] = true
-      this.lastName = type
+      this.listDisplay[type] = true;
+      this.lastName = type;
 
-      console.log(type)
+      console.log(type);
       // this.showMask = !this.showMask
-      this.showMask = true
+      this.showMask = true;
     },
     secondChange(index) {
-      this.listThird = this.listSecond[index]['children']
-      this.showThird = true
+      this.listThird = this.listSecond[index]['children'];
+      this.showThird = true;
     },
     priceChexk(index) {
-      console.log(index)
-      const item = this.priceList[index]
-      this.priceCheckedList.push(item)
+      console.log(index);
+      const item = this.priceList[index];
+      this.priceCheckedList.push(item);
     }
   }
-}
+};
 </script>
 <style scoped>
 /* 房源列表 */
@@ -324,11 +327,20 @@ export default {
 .price {
   width: 100%;
 }
+.price .title {
+  font-size: 14px;
+  margin: 10px 0;
+}
 .price-search {
   display: flex;
+  margin-bottom: 10px;
 }
 .price-search input {
   text-align: center;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  border-radius: 3px;
+  flex: 1;
 }
 .dot {
   /* display: flex; */
